@@ -3,12 +3,16 @@ package com.ayty.fintech.dtos;
 import java.io.Serializable;
 
 import com.ayty.fintech.domain.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String full_name;
+	
+	@JsonProperty(value = "full_name")
+	private String fullName;
+	
 	private String cpf;
 	private String phone;
 	private String email;
@@ -19,9 +23,10 @@ public class UserDTO implements Serializable {
 	
 	public UserDTO(User obj) {
 		this.id = obj.getId();
-		this.full_name = obj.getFull_name();
+		this.fullName = obj.getFullName();
 		this.cpf = obj.getCpf();
 		this.phone = obj.getPhone();
+		this.email = obj.getEmail();
 		this.password = obj.getPassword();
 	}
 
@@ -33,12 +38,12 @@ public class UserDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getFull_name() {
-		return full_name;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFull_name(String full_name) {
-		this.full_name = full_name;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getCpf() {

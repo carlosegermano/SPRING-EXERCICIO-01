@@ -2,14 +2,16 @@ package com.ayty.fintech.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User implements Serializable {
@@ -26,7 +28,8 @@ public class User implements Serializable {
     )
 	private Integer id;
 	
-	private String full_name;
+	@JsonProperty(value = "full_name")
+	private String fullName;
 	
 	@Column(unique = true)
 	private String cpf;
@@ -38,21 +41,19 @@ public class User implements Serializable {
 	
 	private String password;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="user")
 	private Consumer consumer;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="user")
 	private Seller seller;
 	
 	public User() {
 	}
 	
-	public User(Integer id, String full_name, String cpf, String phone, String email, String password) {
+	public User(Integer id, String fullName, String cpf, String phone, String email, String password) {
 		super();
 		this.id = id;
-		this.full_name = full_name;
+		this.fullName = fullName;
 		this.cpf = cpf;
 		this.phone = phone;
 		this.email = email;
@@ -67,12 +68,12 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getFull_name() {
-		return full_name;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFull_name(String full_name) {
-		this.full_name = full_name;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getCpf() {

@@ -34,7 +34,7 @@ public class Seller implements Serializable {
 
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_seller_id")
 	@MapsId
 	private User user;
 	

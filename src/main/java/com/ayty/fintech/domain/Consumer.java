@@ -28,19 +28,21 @@ public class Consumer implements Serializable {
     )
 	private Integer id;
 
+	private Integer user_id;
 	private String username;
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_consumer_id")
 	@MapsId
 	private User user;
 	
 	public Consumer() {
 	}
 	
-	public Consumer(Integer id, String username) {
+	public Consumer(Integer id, Integer user_id, String username) {
 		this.id = id;
+		this.user_id = user_id;
 		this.username = username;
 	}
 
@@ -50,6 +52,14 @@ public class Consumer implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUsername() {
