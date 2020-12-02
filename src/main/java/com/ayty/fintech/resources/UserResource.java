@@ -20,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ayty.fintech.domain.User;
 import com.ayty.fintech.dtos.UserDTO;
+import com.ayty.fintech.dtos.UserUpdateDTO;
 import com.ayty.fintech.services.UserService;
 
 @RestController
@@ -68,4 +69,11 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<?> update(@RequestBody UserUpdateDTO objDto, @PathVariable Integer id) {
+		User obj = userService.fromDto(objDto);
+		obj.setId(id);
+		obj = userService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 }
