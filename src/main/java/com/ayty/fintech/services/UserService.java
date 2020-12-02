@@ -23,9 +23,12 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	
 	public Optional<User> find(Integer id) {
 		return userRepository.findById(id);
+	}
+	
+	public List<User> findByFullNameContainingIgnoreCase(String name){
+		return userRepository.findByFullNameContainingIgnoreCase(name);
 	}
 	
 	public User insert(User obj) {

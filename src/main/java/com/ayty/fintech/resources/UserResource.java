@@ -42,6 +42,12 @@ public class UserResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@RequestMapping(value="/name", method=RequestMethod.GET)
+	public ResponseEntity<List<User>> find(@RequestParam(value="value") String name){
+		List<User> obj = userService.findByFullNameContainingIgnoreCase(name);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(value = "/page", method=RequestMethod.GET)
 	public ResponseEntity<Page<UserDTO>> findPage(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,

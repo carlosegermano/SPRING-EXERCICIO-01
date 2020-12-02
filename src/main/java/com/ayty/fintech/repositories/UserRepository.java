@@ -1,15 +1,16 @@
 package com.ayty.fintech.repositories;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ayty.fintech.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-	
-	public Optional<User> findById(Integer id);
 
+	@Transactional(readOnly=true)
+	List<User> findByFullNameContainingIgnoreCase(String name);
 }
