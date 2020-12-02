@@ -32,7 +32,7 @@ public class SellerResource {
 	public ResponseEntity<Void> insert(@Valid @RequestBody SellerDTO objDto) {
 		Seller obj = sellerService.fromDto(objDto);
 		obj = sellerService.insert(obj);
-		User user = userService.find(obj.getUserId()).get();
+		User user = userService.find(obj.getUserId());
 		user.setSeller(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
 				.path("/{id}").buildAndExpand(obj.getUserId()).toUri();

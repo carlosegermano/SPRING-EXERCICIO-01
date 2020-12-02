@@ -13,6 +13,7 @@ import com.ayty.fintech.domain.User;
 import com.ayty.fintech.dtos.UserDTO;
 import com.ayty.fintech.dtos.UserUpdateDTO;
 import com.ayty.fintech.repositories.UserRepository;
+import com.ayty.fintech.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -24,8 +25,10 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	public Optional<User> find(Integer id) {
-		return userRepository.findById(id);
+	public User find(Integer id) {
+		Optional<User> obj = userRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"O objeto não foi encontrado! Id: " + id + ", Tipo: " + User.class.getName()));
 	}
 	
 	public List<User> findByFullNameContainingIgnoreCase(String name){
@@ -38,9 +41,14 @@ public class UserService {
 	}
 	
 	public User update(User obj) {
-		User newObj = find(obj.getId()).get();
+		User newObj = find(obj.getId());
 		updateObj(newObj, obj);
 		return userRepository.save(newObj);
+	}
+	
+	public void delete(Integer id) {
+		User obj = find(id);
+		userRepository.delete(obj);
 	}
 
 	private void updateObj(User newObj, User obj) {

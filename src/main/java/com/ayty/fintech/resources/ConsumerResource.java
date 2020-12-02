@@ -32,7 +32,7 @@ public class ConsumerResource {
 	public ResponseEntity<Void> insert(@Valid @RequestBody ConsumerDTO objDto) {
 		Consumer obj = consumerService.fromDto(objDto);
 		obj = consumerService.insert(obj);
-		User user = userService.find(obj.getUserId()).get();
+		User user = userService.find(obj.getUserId());
 		user.setConsumer(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
 				.path("/{id}").buildAndExpand(obj.getUserId()).toUri();
