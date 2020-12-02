@@ -3,16 +3,12 @@ package com.ayty.fintech.dtos;
 import java.io.Serializable;
 
 import com.ayty.fintech.domain.User;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	
-	@JsonProperty(value = "full_name")
 	private String fullName;
-	
 	private String cpf;
 	private String phone;
 	private String email;

@@ -18,14 +18,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE, 
-        generator = "sequence_id_user"
-    )
-    @SequenceGenerator(
-        name =  "sequence_id_user",
-        sequenceName = "sequence_user"
-    )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_id_user")
+	@SequenceGenerator(name = "sequence_id_user", sequenceName = "sequence_user")
 	private Integer id;
 	
 	@JsonProperty(value = "full_name")
@@ -148,5 +142,4 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
 }

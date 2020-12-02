@@ -3,43 +3,70 @@ package com.ayty.fintech.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Seller implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer userId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_id_seller")
+	@SequenceGenerator(name = "sequence_id_seller", sequenceName = "sequence_seller")
+	private Integer id;
+	
 	private String cnpj;
-	private String fantasy_name;
-	private String social_name;
+	
+	@JsonProperty(value = "fantasy_name")
+	private String fantasyName;
+	
+	@JsonProperty(value = "social_name")
+	private String socialName;
+	
 	private String username;
+	
+	@JsonProperty(value = "user_id")
+	private Integer userId;
 
 	@JsonIgnore
 	@OneToOne
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name = "user_seller_id")
 	private User user;
 	
-	public Seller(Integer userId, String full_name, String cpf, String phone, String email, String password, String cnpj,
-			String fantasy_name, String social_name, String username) {
-		this.userId = userId;
-		this.cnpj = cnpj;
-		this.fantasy_name = fantasy_name;
-		this.social_name = social_name;
-		this.username = username;
+	public Seller() {
 	}
 	
-	public Integer getUserId() {
-		return userId;
+	public Seller(Integer id, Integer userId, String cnpj,
+			String fantasyName, String socialName, String username) {
+		this.id = id;
+		this.userId = userId;
+		this.cnpj = cnpj;
+		this.fantasyName = fantasyName;
+		this.socialName = socialName;
+		this.username = username;
 	}
 	
 	public void setId(Integer userId) {
 		this.userId = userId;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getUserId() {
+		return userId;
 	}
 	
 	public String getCnpj() {
@@ -50,20 +77,20 @@ public class Seller implements Serializable {
 		this.cnpj = cnpj;
 	}
 	
-	public String getFantasy_name() {
-		return fantasy_name;
+	public String getFantasyName() {
+		return fantasyName;
 	}
 	
-	public void setFantasy_name(String fantasyName) {
-		this.fantasy_name = fantasyName;
+	public void setFantasyName(String fantasyName) {
+		this.fantasyName = fantasyName;
 	}
 	
-	public String getSocial_name() {
-		return social_name;
+	public String getSocialName() {
+		return socialName;
 	}
 	
-	public void setSocial_name(String socialName) {
-		this.social_name = socialName;
+	public void setSocialName(String socialName) {
+		this.socialName = socialName;
 	}
 	
 	public String getUsername() {
@@ -81,5 +108,4 @@ public class Seller implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 }

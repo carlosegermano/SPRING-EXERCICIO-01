@@ -18,6 +18,6 @@ public class ConsumerService {
 	}
 	
 	public Consumer fromDto(ConsumerDTO objDto) {
-		return new Consumer(objDto.getUser_id(), objDto.getUsername());
+		return new Consumer(objDto.getId(), objDto.getUserId(), objDto.getUsername());
 	}
 }

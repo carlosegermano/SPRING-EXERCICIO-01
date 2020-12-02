@@ -2,24 +2,29 @@ package com.ayty.fintech.dtos;
 
 import java.io.Serializable;
 
-import com.ayty.fintech.domain.Consumer;
-
-public class ConsumerDTO implements Serializable {
+public class SellerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Integer userId;
+	private String cnpj;
+	private String fantasyName;
+	private String socialName;
 	private String username;
 	
-	public ConsumerDTO() {
+	public SellerDTO() {
 	}
 	
-	public ConsumerDTO(Consumer obj) {
-		this.id  = obj.getId();
-		this.userId = obj.getUserId();
-		this.username = obj.getUsername();
+	public SellerDTO(Integer id, Integer userId, String cnpj, String fantasyName, String socialName, String username) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.cnpj = cnpj;
+		this.fantasyName = fantasyName;
+		this.socialName = socialName;
+		this.username = username;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -34,6 +39,30 @@ public class ConsumerDTO implements Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getFantasyName() {
+		return fantasyName;
+	}
+
+	public void setFantasyName(String fantasyName) {
+		this.fantasyName = fantasyName;
+	}
+
+	public String getSocialName() {
+		return socialName;
+	}
+
+	public void setSocialName(String socialName) {
+		this.socialName = socialName;
 	}
 
 	public String getUsername() {
@@ -60,7 +89,7 @@ public class ConsumerDTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ConsumerDTO other = (ConsumerDTO) obj;
+		SellerDTO other = (SellerDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -68,5 +97,5 @@ public class ConsumerDTO implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
