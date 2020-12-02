@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ayty.fintech.domain.Consumer;
 import com.ayty.fintech.domain.User;
-import com.ayty.fintech.dtos.ConsumerDTO;
 import com.ayty.fintech.dtos.UserDTO;
 import com.ayty.fintech.services.UserService;
 
 @RestController
-@RequestMapping(value = "api/users")
+@RequestMapping(value = "/api/users")
 public class UserResource {
 
 	@Autowired
@@ -57,16 +55,7 @@ public class UserResource {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody UserDTO objDto) {
-		User obj = userService.fromUserDto(objDto);
-		obj = userService.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-	}
-	
-	@RequestMapping(value = "/consumers", method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ConsumerDTO objDto) {
-		Consumer obj = userService.fromConsumerDto(objDto);
+		User obj = userService.fromDto(objDto);
 		obj = userService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
