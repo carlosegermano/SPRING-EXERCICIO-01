@@ -1,6 +1,7 @@
 package com.ayty.fintech.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Transactional(readOnly=true)
 	List<User> findByFullNameContainingIgnoreCase(String name);
+
+	Optional<User> findByEmail(String email);
 }
