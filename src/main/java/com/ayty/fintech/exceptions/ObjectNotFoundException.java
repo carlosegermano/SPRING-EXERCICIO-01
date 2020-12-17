@@ -1,4 +1,4 @@
-package com.ayty.fintech.services.exceptions;
+package com.ayty.fintech.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

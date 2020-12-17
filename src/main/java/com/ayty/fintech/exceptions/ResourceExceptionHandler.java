@@ -1,4 +1,4 @@
-package com.ayty.fintech.resources.exceptions;
+package com.ayty.fintech.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,9 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import com.ayty.fintech.services.exceptions.InvalidRequestException;
-import com.ayty.fintech.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

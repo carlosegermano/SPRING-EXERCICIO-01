@@ -1,4 +1,4 @@
-package com.ayty.fintech.resources;
+package com.ayty.fintech.consumer;
 
 import java.net.URI;
 
@@ -12,25 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ayty.fintech.domain.Consumer;
-import com.ayty.fintech.domain.User;
-import com.ayty.fintech.dtos.ConsumerDTO;
-import com.ayty.fintech.services.ConsumerService;
-import com.ayty.fintech.services.UserService;
+import com.ayty.fintech.user.User;
+import com.ayty.fintech.user.UserServiceImpl;
 
 @Controller
 @RequestMapping(value = "/api/users/consumers")
-public class ConsumerResource {
+public class ConsumerController {
 	
 	@Autowired
-	private ConsumerService consumerService;
+	private ConsumerServiceImpl consumerService;
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ConsumerDTO objDto) {
-		Consumer obj = consumerService.fromDto(objDto);
+		Consumer obj = ConsumerDTO.from(objDto);
 		obj = consumerService.insert(obj);
 		User user = userService.find(obj.getUserId());
 		user.setConsumer(obj);

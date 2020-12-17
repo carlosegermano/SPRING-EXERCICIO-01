@@ -1,7 +1,8 @@
-package com.ayty.fintech.domain;
+package com.ayty.fintech.seller;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 
+import com.ayty.fintech.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +24,7 @@ public class Seller implements Serializable {
 	@SequenceGenerator(name = "sequence_id_seller", sequenceName = "sequence_seller")
 	private Integer id;
 	
+	@Column(unique = true)
 	private String cnpj;
 	
 	@JsonProperty(value = "fantasy_name")
@@ -30,6 +33,7 @@ public class Seller implements Serializable {
 	@JsonProperty(value = "social_name")
 	private String socialName;
 	
+	@Column(unique = true)
 	private String username;
 	
 	@JsonProperty(value = "user_id")

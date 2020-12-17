@@ -1,4 +1,4 @@
-package com.ayty.fintech.domain;
+package com.ayty.fintech.user;
 
 import java.io.Serializable;
 
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.ayty.fintech.consumer.Consumer;
+import com.ayty.fintech.seller.Seller;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity

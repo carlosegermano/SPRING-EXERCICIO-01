@@ -1,8 +1,6 @@
-package com.ayty.fintech.dtos;
+package com.ayty.fintech.user;
 
 import java.io.Serializable;
-
-import com.ayty.fintech.domain.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

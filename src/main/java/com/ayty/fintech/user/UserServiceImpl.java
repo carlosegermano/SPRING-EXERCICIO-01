@@ -1,4 +1,4 @@
-package com.ayty.fintech.services;
+package com.ayty.fintech.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,15 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.ayty.fintech.domain.User;
-import com.ayty.fintech.dtos.UserDTO;
-import com.ayty.fintech.dtos.UserUpdateDTO;
-import com.ayty.fintech.repositories.UserRepository;
-import com.ayty.fintech.services.exceptions.InvalidRequestException;
-import com.ayty.fintech.services.exceptions.ObjectNotFoundException;
+import com.ayty.fintech.exceptions.InvalidRequestException;
+import com.ayty.fintech.exceptions.ObjectNotFoundException;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;

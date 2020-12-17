@@ -1,30 +1,23 @@
-package com.ayty.fintech.dtos;
+package com.ayty.fintech.consumer;
 
 import java.io.Serializable;
 
-public class SellerDTO implements Serializable {
+public class ConsumerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Integer userId;
-	private String cnpj;
-	private String fantasyName;
-	private String socialName;
 	private String username;
 	
-	public SellerDTO() {
+	public ConsumerDTO() {
 	}
 	
-	public SellerDTO(Integer id, Integer userId, String cnpj, String fantasyName, String socialName, String username) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.cnpj = cnpj;
-		this.fantasyName = fantasyName;
-		this.socialName = socialName;
-		this.username = username;
+	public ConsumerDTO(Consumer obj) {
+		this.id  = obj.getId();
+		this.userId = obj.getUserId();
+		this.username = obj.getUsername();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -41,36 +34,28 @@ public class SellerDTO implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
-	public String getFantasyName() {
-		return fantasyName;
-	}
-
-	public void setFantasyName(String fantasyName) {
-		this.fantasyName = fantasyName;
-	}
-
-	public String getSocialName() {
-		return socialName;
-	}
-
-	public void setSocialName(String socialName) {
-		this.socialName = socialName;
-	}
-
 	public String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public static Consumer from(ConsumerDTO objDto) {
+		Consumer obj = new Consumer();
+		obj.setId(objDto.getId());
+		obj.setUserId(objDto.getUserId());
+		obj.setUsername(objDto.getUsername());
+		return obj;
+	}
+	
+	public static ConsumerDTO to(Consumer obj) {
+		ConsumerDTO objDto = new ConsumerDTO();
+		objDto.setId(obj.getId());
+		objDto.setUserId(obj.getUserId());
+		objDto.setUsername(obj.getUsername());
+		return objDto;
 	}
 
 	@Override
@@ -89,7 +74,7 @@ public class SellerDTO implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SellerDTO other = (SellerDTO) obj;
+		ConsumerDTO other = (ConsumerDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -97,5 +82,5 @@ public class SellerDTO implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 }

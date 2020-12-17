@@ -1,4 +1,4 @@
-package com.ayty.fintech.resources;
+package com.ayty.fintech.seller;
 
 import java.net.URI;
 
@@ -12,21 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ayty.fintech.domain.Seller;
-import com.ayty.fintech.domain.User;
-import com.ayty.fintech.dtos.SellerDTO;
-import com.ayty.fintech.services.SellerService;
-import com.ayty.fintech.services.UserService;
+import com.ayty.fintech.user.User;
+import com.ayty.fintech.user.UserServiceImpl;
 
 @Controller
 @RequestMapping(value = "/api/users/sellers")
-public class SellerResource {
+public class SellerController {
 	
 	@Autowired
-	private SellerService sellerService;
+	private SellerServiceImpl sellerService;
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody SellerDTO objDto) {

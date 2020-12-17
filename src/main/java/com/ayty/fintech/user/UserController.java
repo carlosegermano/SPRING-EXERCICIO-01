@@ -1,4 +1,4 @@
-package com.ayty.fintech.resources;
+package com.ayty.fintech.user;
 
 
 import java.net.URI;
@@ -18,17 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ayty.fintech.domain.User;
-import com.ayty.fintech.dtos.UserDTO;
-import com.ayty.fintech.dtos.UserUpdateDTO;
-import com.ayty.fintech.services.UserService;
-
 @RestController
 @RequestMapping(value = "/api/users")
-public class UserResource {
+public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> findAll() {
@@ -44,7 +39,7 @@ public class UserResource {
 	}
 	
 	@RequestMapping(value="/name", method=RequestMethod.GET)
-	public ResponseEntity<List<User>> find(@RequestParam(value="value") String name){
+	public ResponseEntity<List<User>> findByName(@RequestParam(value="value") String name){
 		List<User> obj = userService.findByFullNameContainingIgnoreCase(name);
 		return ResponseEntity.ok().body(obj);
 	}

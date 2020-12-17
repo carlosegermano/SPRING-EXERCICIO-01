@@ -1,4 +1,4 @@
-package com.ayty.fintech.resources.exceptions;
+package com.ayty.fintech.exceptions;
 
 import java.io.Serializable;
 
